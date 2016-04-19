@@ -1,0 +1,40 @@
+
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath('gradle.plugin.pl.greenpath.gradle.dockermicroservices:docker-microservices-gradle-plugin:2.0.5')
+  }
+}
+
+apply plugin: pl.greenpath.gradle.DockerPlugin
+
+
+docker {
+  port 8080
+  generateDockerfile false
+  dockerfile new File(project.projectDir, 'docker/Dockerfile').text
+  imageName "aetas/spring-boot-admin-docker:${project.version}"
+}
+
+task copyDockerFiles(dependsOn: assemble) << {
+
+  def buildDockerDir = new File(project.buildDir, 'docker')
+  copy {
+    from new File('docker')
+    into buildDockerDir
+  }
+  println new File(project.buildDir, 'libs')
+  println "${project.name}-${project.version}.jar"
+  copy {
+    from(new File(project.buildDir, 'libs')) {
+      include "${project.name}-${project.version}.jar"
+    }
+    into "$buildDockerDir/artifacts"
+  }
+}
+
+dockerBuild.dependsOn copyDockerFiles
