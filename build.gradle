@@ -13,7 +13,7 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'spring-boot'
 
-version = '1.4.1-SNAPSHOT'
+version = '1.4.1'
 
 jar {
   baseName = 'spring-boot-admin-docker'
@@ -28,7 +28,7 @@ repositories {
 
 dependencyManagement {
   imports {
-    mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Brixton.SR4'
+    mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Brixton.SR5'
   }
 }
 
@@ -42,7 +42,7 @@ dependencies {
 }
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '2.12'
+  gradleVersion = '3.0'
 }
 
 apply from: 'gradle/docker.gradle'

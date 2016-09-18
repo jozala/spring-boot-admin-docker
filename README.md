@@ -7,7 +7,10 @@ Docker image is publicly available as [aetas/spring-boot-admin-docker](https://h
 You can run spring-boot-admin in Docker with this command:
 
 `
-docker run -d -p 8080:8080 --name spring-boot-admin aetas/spring-boot-admin-docker:1.4.1-SNAPSHOT
+docker run -d -p 8090:8080 --name spring-boot-admin aetas/spring-boot-admin-docker:1.4.1
 `
 
-Now just go to <http://localhost:8080> (or <http://your-docker:8080>) with your browser.
+Now just go to <http://localhost:8090> (or <http://your-docker:8090>) with your browser.
+
+
+More detailed description in blog post [here](http://aetas.pl/?p=347).
